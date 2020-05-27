@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>ajax
+
+  </title>
+
+  <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mustache.js/0.8.1/mustache.min.js"></script>
+</head>
+
+<body>
+  <h1>Ajax Tutorial1</h1>
+
+  <h2>Register ID</h2>
+
+  <template id="order-template">
+    <li data-id="{{id}}">
+      <button data-id='{{id}}' class='remove'>X</button>
+      <div class="orders_content">
+        <p>
+          <strong>Name:</strong>
+          <span class="noedit name">{{name}}</span>
+          <input class="edit name" />
+        </p>
+        <p>
+          <strong>lastname:</strong>
+          <span class="noedit lastname">{{lastname}}</span>
+          <input class="edit lastname" />
+        </p>
+
+        <button class='editOrder noedit'>Edit</button>
+        <button class='saveEdit edit'>Save</button>
+        <button class='cancelEdit edit'>Cancel</button>
+      </div>
+    </li>
+  </template>
+
+  <div id="ordersContainer">
+    <ul id="orders"></ul>
+
+    <h4>Add a Coffee Order</h4>
+    <p> name: <input type="text" id="name"></p>
+    <p> lastname: <input type="text" id="lastname"></p>
+  </div>
+
+  <button id="add-order">Add!</button>
+
+</body>
+<script>
+  $(function () {
+    var $orders = $('#orders');
+    var $name = $('#name');
+    var $lastname = $('#lastname');
+
+    var orderTemplate = $('#order-template').html();
+
+    function addOrder(order) {
+      $orders.append(Mustache.render(orderTemplate, order));
+    }
+
+    $.ajax({
+      type: 'GET',
+      url: 'http://rest.learncode.academy/api/test1API/orders',
+      //data: {name: 'Frank', lastname: 'Americano'},
+      success: function (orders) {
+        $.each(orders, function (i, order) {
+          addOrder(order);
+        });
+      },
+      error: function () {
+        console.log('error loading orders');
+      }
+    });
+
+    $('#add-order').on('click', function () {
+
+      var order = {
+        name: $name.val(),
+        lastname: $lastname.val()
+      };
+
+      $.ajax({
+        type: 'POST',
+        url: 'http://rest.learncode.academy/api/test1API/orders',
+        data: order,
+        success: function (newOrder) {
+          addOrder(newOrder);
+        },
+        error: function () {
+          console.log('error saving order');
+        }
+      });
+    });//end #add-order
+
+    $orders.delegate('.remove', 'click', function () {
+
+      var $li = $(this).closest('li');
+
+      $.ajax({
+        type: 'DELETE',
+        url: 'http://rest.learncode.academy/api/test1API/orders/' + $(this).attr('data-id'),
+        success: function () {
+          $li.fadeOut(300, function () {
+            $(this).remove();
+          });
+        },
+      });
+
+
+    });//end remove on click
+
+    $orders.delegate('.editOrder', 'click', function () {
+
+      var $li = $(this).closest('li');
+      $li.find('input.name').val($li.find('span.name').html());
+      $li.find('input.lastname').val($li.find('span.lastname').html());
+      $li.addClass('edit');
+    });//end editOrder on click
+
+    $orders.delegate('.cancelEdit', 'click', function () {
+
+      $(this).closest('li').removeClass('edit');
+    });//end cancelEdit on click
+
+    $orders.delegate('.saveEdit', 'click', function () {
+
+      var $li = $(this).closest('li');
+      var order = {
+        name: $li.find('input.name').val(),
+        lastname: $li.find('input.lastname').val()
+      };
+
+      $.ajax({
+        type: 'PUT',
+        url: 'http://rest.learncode.academy/api/test1API/orders/' + $li.attr('data-id'),
+        data: order,
+        success: function (newOrder) {
+          $li.find('span.name').html(order.name);
+          $li.find('span.lastname').html(order.lastname);
+          $li.removeClass('edit');
+        },
+        error: function () {
+          console.log('error updating order');
+        }
+      });
+
+    });//end saveEdit on click
+
+
+
+  })// the end
+
+
+</script>
+<style>
+  body {
+    font-family: arial;
+  }
+
+  #orders li {
+    background-color: #f3f3f3;
+    border-radius: 5px;
+    width: 400px;
+    margin: 20px;
+    list-style: none;
+  }
+
+  .orders_content {
+    padding: 10px;
+  }
+
+  #orders li:hover {
+    box-shadow: 1px 4px 8px #0c0c0c2d;
+    transition: 0.2s;
+  }
+
+  #orders li .edit {
+    display: none;
+  }
+
+  #orders li.edit .edit {
+    display: initial;
+  }
+
+  #orders li.edit .noedit {
+    display: none;
+  }
+
+  .remove {
+    color: white;
+    outline: none;
+    background: red;
+    cursor: pointer;
+    border: none;
+    margin: 0;
+    padding: 3px 14px;
+    border-radius: 1px 5px 1px 1px;
+    float: right;
+
+  }
+
+  .remove:hover {
+    box-shadow: 1px 1px 20px #ff0000a9;
+    color: #ffacacc2;
+    transition: 0.2s;
+
+  }
+
+  .editOrder {
+    background: transparent;
+    border: none;
+    color: green;
+  }
+
+  .editOrder:hover {
+    color: white;
+    background: green;
+  }
+</style>
+
+</html>

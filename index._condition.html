@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>condition Javascrip</title>
+</head>
+
+<body>
+
+  <form>
+    <input id="myInput" type="text" placeholder='press enter'>
+    <button id='but' type='submit' onclick="myFunction()">Try it</button>
+    <p id="demo"></p>
+  </form>
+
+
+  <form>
+    <input type='text' placeholder='press enter'>
+    <button id='but' type='submit'>do not click me</button>
+  </form>
+
+
+  <div>
+    <pre style="font-family: hack;">
+        function myFunction() {
+          var text;
+          var fruits = document.getElementById("myInput").value;
+        
+          switch (fruits) {
+            case "Banana":
+              text = "Banana is good!";
+              break;
+            case "Orange":
+              text = "I am not a fan of orange.";
+              break;
+            case "Apple":
+              text = "How you like them apples?";
+              break;
+            default:
+              text = "I have never heard of that fruit...";
+          }
+          document.getElementById("demo").innerHTML = text;
+        }
+      </pre>
+
+  </div>
+
+</body>
+<script src="./condition.js"></script>
+<script>
+
+  $('#but').click(function (e) {
+
+  });
+</script>
+
+</html>
