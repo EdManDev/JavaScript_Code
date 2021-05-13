@@ -11,7 +11,7 @@
 const x = 6;
 const y = 3;
 
-const desc = "this application will show you true and fals: \n";
+const desc = "this application will show you true and false: \n";
 const demo = (x < 10 && y > 1) + "\n" + (x < 10 && y < 1);
 
 console.log(desc);
