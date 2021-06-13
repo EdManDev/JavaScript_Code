@@ -50,3 +50,5 @@ function Example() {
     </div>
   );
 }
+
+export default Document_Title
