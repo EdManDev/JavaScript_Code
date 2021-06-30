@@ -7,23 +7,23 @@ import { Link } from "react-router-dom";
 const btnArray = [
 	{
 		nbr: "1",
-		email: "first button",
+		name: "first button",
 	},
 	{
 		nbr: "2",
-		email: "second button",
+		name: "second button",
 	},
 	{
 		nbr: "3",
-		email: "third button",
+		name: "third button",
 	},
 	{
 		nbr: "4",
-		email: "fourth button",
+		name: "fourth button",
 	},
 	{
 		nbr: "5",
-		email: "fith button",
+		name: "fith button",
 	},
 ];
 
@@ -37,7 +37,7 @@ const Landing5 = () => {
 							<>
 								<div className="nav-link " href="#">
 									<Link type="button" class="btn btn-outline-success">
-										{i.nbr} {i.email}
+										{i.nbr} {i.name}
 									</Link>
 								</div>
 							</>
@@ -49,22 +49,21 @@ const Landing5 = () => {
 	);
 };
 
+export default Landing5;
 // =========================================================  I CAN ALSO USE THAT EVERITHING ARE GOOD HERE
 
-
-export default Landing5;
 
 import React from "react";
 import { Link } from "react-router-dom";
 
-const btnArray = ["Button", "Button", "Button", "Button", "Button"];
+const btnArray = ["Button", "Button", "Button", "Button", "Button", "Button"];
 
-const ListBtn = ({ reason, i }) => {
+const ListBtn = ({ name, i }) => {
 	return (
 		<>
 			<div className="nav-link " href="#">
 				<Link type="button" class="btn btn-outline-success">
-					{reason} {i}
+					{name} {i}
 				</Link>
 			</div>
 		</>
@@ -76,8 +75,8 @@ const Landing5 = () => {
 		<>
 			<div className="nav-scroller ">
 				<nav className="nav nav-underline bg-light justify-content-between">
-					{btnArray.map((reason, i) => (
-						<ListBtn key={i} reason={reason} i={i + 1} />
+					{btnArray.map((name, i) => (
+						<ListBtn key={i} name={name} i={i + 1} />
 					))}
 				</nav>
 			</div>
@@ -86,29 +85,6 @@ const Landing5 = () => {
 };
 
 export default Landing5;
-
-// Create an Array
-let fruits = ["Apple", "Bannana", "Pinaple", "orange", "grape"];
-// console.log('you have:', fruits.length, 'which is', fruits);
-
-// ---------------------------------------------------------------------
-// Access an Array item using the index position
-let first = fruits[0];
-// Apple
-
-let last = fruits[fruits.length - 1];
-// Banana
-
-console.log(
-	"you have:",
-	fruits.length,
-	"which is",
-	fruits,
-	"the first is:",
-	first,
-	"the last is:",
-	last
-);
 
 // =========================================================  I CAN ALSO USE THAT EVERITHING ARE GOOD HERE
 
