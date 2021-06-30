@@ -1,3 +1,59 @@
+// All the Same But all Are Good
+
+
+import React from "react";
+import { Link } from "react-router-dom";
+
+const btnArray = [
+	{
+		nbr: "1",
+		email: "first button",
+	},
+	{
+		nbr: "2",
+		email: "second button",
+	},
+	{
+		nbr: "3",
+		email: "third button",
+	},
+	{
+		nbr: "4",
+		email: "fourth button",
+	},
+	{
+		nbr: "5",
+		email: "fith button",
+	},
+];
+
+const Landing5 = () => {
+	return (
+		<div>
+			<div className="nav-scroller ">
+				<nav className="nav nav-underline bg-light justify-content-between">
+					{btnArray.map((i) => {
+						return (
+							<>
+								<div className="nav-link " href="#">
+									<Link type="button" class="btn btn-outline-success">
+										{i.nbr} {i.email}
+									</Link>
+								</div>
+							</>
+						);
+					})}
+				</nav>
+			</div>
+		</div>
+	);
+};
+
+// =========================================================  I CAN ALSO USE THAT EVERITHING ARE GOOD HERE
+
+
+export default Landing5;
+
 import React from "react";
 import { Link } from "react-router-dom";
 
@@ -50,7 +106,7 @@ console.log(
 	fruits,
 	"the first is:",
 	first,
-	"the first is:",
+	"the last is:",
 	last
 );
 
