@@ -10,7 +10,7 @@ let first = fruits[0]
 let last = fruits[fruits.length - 1]
 // Banana
 
-console.log('you have:', fruits.length, 'which is', fruits);
+console.log('you have:', fruits.length, 'which are', fruits, "the first is:", first, "the first is:", last);
 
 // fruits.forEach(function (item, index, array) {
 //   console.log(item, index)
