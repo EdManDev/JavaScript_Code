@@ -43,6 +43,67 @@ export default date;
 // export default date;
 
 // ============================================================
+
+import React from "react";
+
+function formatDate(date) {
+	return date.toLocaleDateString();
+}
+
+const text = {
+	date: new Date(),
+};
+
+function ShowDate(props) {
+	return (
+		<>
+			<div>{formatDate(props.date)}</div>
+		</>
+	);
+}
+
+const date = () => {
+	return (
+		<div>
+			<ShowDate date={text.date} />;
+		</div>
+	);
+};
+
+export default date;
+
+// ============================================================
+
+import React from "react";
+
+const formatDate = (date) => {
+	return date.toLocaleDateString();
+};
+
+const text = {
+	date: new Date(),
+};
+
+const ShowDate = (props) => {
+	return (
+		<>
+			<div>{formatDate(props.date)}</div>
+		</>
+	);
+};
+
+const date = () => {
+	return (
+		<div>
+			<ShowDate date={text.date} />
+		</div>
+	);
+};
+
+export default date;
+
+// ============================================================
+
 // import React, { Component } from "react";
 
 // export default class date extends Component {
