@@ -49,3 +49,94 @@
 // let a = 5;
 // console.log(++a);
 // ------------------------------------------------
+// process.on("uncaughtException", function (err) {
+// 	if (err instanceof TypeError) {
+// 		throw "Type error";
+// 	} else if (err instanceof ReferenceError) {
+// 		throw "Reference error";
+// 	} else if (err instanceof RangeError) {
+// 		throw "Range error";
+// 	} else {
+// 		throw "Unknown error";
+// 	}
+// });
+// console.log(null.length());
+
+// ------------------------------------
+
+// function cb1() {
+// 	console.log("look here");
+// }
+// function cb2() {
+// 	console.log("no, look here");
+// }
+// process.nextTick(cb2);
+// console.log("no-no, look here");
+// process.nextTick(cb1);
+// console.log("\n");
+// console.log("\n");
+// console.log("\n");
+// console.log(cb1());
+
+// ------------------------------------
+
+// const result [];
+// a.forEach(async (item) => {
+// result.push(await process(item));
+
+// async function process(item) {
+// 	return item * 2;
+// }
+
+// const a = [1, 2, 3, 4, 5];
+// console.log("\n");
+// console.log("\n");
+// console.log("\n");
+// console.log(process());
+// ------------------------------------
+
+// const fs = require("fs");
+// const path = "hello.txt";
+// const buffer = Buffer.from("Hello, world!");
+
+// fs.open(path, "r", (err, fd) => {
+// 	if (err) throw err;
+// 	fs.write(fd, buffer, 1, buffer.length - 1, null, (err) => {
+// 		if (err) throw err;
+// 	});
+// 	fs.close(fd, (err) => {
+// 		if (err) throw err;
+// 	});
+// });
+
+// ------------------------------------
+
+// const fs = require("fs");
+// const path = "hello.txt";
+
+// fs.writeFile(path, "Hello, world!", (err) => {
+// 	if (err) throw err;
+// });
+
+// ------------------------------------
+
+// app.post("/process", function (req, res) {
+// 	let data = "";
+// 	if (req.xhr) {
+// 		data += "Hello, ";
+// 	}
+// 	if (req.body.field) {
+// 		data += "world";
+// 	}
+// 	data += "!";
+// });
+
+// ------------------------------------
+// ------------------------------------
+// ------------------------------------
+// ------------------------------------
+// ------------------------------------
+// ------------------------------------
+// ------------------------------------
+// ------------------------------------
+// ------------------------------------
